@@ -1,0 +1,21 @@
+{
+    "name": "happyr/uuid-param-converter",
+    "type": "library",
+    "description": "A simple param converter that handles UUID",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Tobias Nyholm",
+            "email": "tobias.nyholm@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^7.2",
+        "doctrine/persistence": "^1.1 || ^2.0",
+        "sensio/framework-extra-bundle": "^5.4",
+        "symfony/http-kernel": "^4.3 || ^5.0"
+    },
+    "autoload": {
+        "psr-4": { "Happyr\\": "src/" }
+    }
+}
