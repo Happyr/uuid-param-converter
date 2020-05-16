@@ -17,7 +17,7 @@ composer require happyr/uuid-param-converter
 # app/config/happyr_param_converter.yml
 services:
     Happyr\UuidParamConverter:
-        autowire: true
+        arguments: ['@doctrine.registry']
         tags:
             - { name: request.param_converter, priority: 5, converter: uuid_converter }
 ```

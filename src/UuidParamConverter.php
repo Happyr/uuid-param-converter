@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Happyr;
 
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Common\Persistence\ManagerRegistry as LegacyManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\DBAL\Types\ConversionException;
 use Doctrine\ORM\NoResultException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
@@ -19,8 +20,12 @@ final class UuidParamConverter implements ParamConverterInterface
      */
     private $registry;
 
-    public function __construct(ManagerRegistry $registry = null)
+    public function __construct($registry = null)
     {
+        if ($registry !== null && !$registry instanceof LegacyManagerRegistry && !$registry instanceof ManagerRegistry) {
+            throw new \LogicException(sprintf('First argument to "%s::__construct" must be instance of "%s" or "%s".', __CLASS__, ManagerRegistry::class, LegacyManagerRegistry::class));
+        }
+
         $this->registry = $registry;
     }
 
